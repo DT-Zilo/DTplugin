@@ -1,0 +1,17 @@
+name: DTcreature
+main: me.zilo.DTcmd.DTmain
+version: 0.1
+commands:
+   puppet:
+      description: ใช่ผู้เล่นอื่นพูดแทน.
+      usage: /puppet <ผู้เล่นเป้าหมาย> <ข้อความ>
+      aliases: [pup]
+permission: 
+    DTcmd.*:
+        description: ให้สิทธิทุกอย่าง
+        default: op
+        children:
+            DTcmd.puppet: true
+    DTcmd.puppet:
+        description: ให้สิทธ์ผู้เล่นใช้คำสั่ง /puppet
+        default: op
