@@ -6,6 +6,10 @@ commands:
       description: ใช่ผู้เล่นอื่นพูดแทน.
       usage: /puppet <ผู้เล่นเป้าหมาย> <ข้อความ>
       aliases: [pup]
+   fakeop:
+      description: ขึ้นข้อความ You are now op!.
+      usage: /fakeop <ผู้เล่นเป้าหมาย>
+      aliases: [fop]
 permission: 
     DTcmd.*:
         description: ให้สิทธิใช้และป้องกันคำสั่งทั้งหมด
@@ -33,3 +37,4 @@ permission:
     DTcmd.antiFakeOP:
         description: ป้องกันจากคำสั่ง /fakeOP
         default: op
+    

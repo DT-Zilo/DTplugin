@@ -55,6 +55,7 @@ public class fakeOP_Cmd
                 }
                 else
                 {
+                    sender.sendMessage(ChatColor.GREEN + "ส่งเรียบร้อย");
                     target.sendMessage(ChatColor.YELLOW + "You are now op!");
                 }
             }
