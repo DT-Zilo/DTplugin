@@ -13,12 +13,12 @@ import org.bukkit.entity.Player;
  *
  * @author Zilo
  */
-public class fakeOP_Cmd 
+public class AdminChat_Cmd 
 {
     private int minLenght;
     private int maxLenght;
     
-    public fakeOP_Cmd(int minLen, int maxLen)
+    public AdminChat_Cmd(int minLen, int maxLen)
     {
         minLenght = minLen;
         
@@ -41,22 +41,25 @@ public class fakeOP_Cmd
         }
         else
         {
-            if(sender.hasPermission("DTcmd.fakeOP")) 
+            if(sender.hasPermission("DTcmd.adminChat")) 
             {
-                Player target = Bukkit.getServer().getPlayer(args[0]);
-
-                if (target == null)
+                String msg = 
+                        ChatColor.YELLOW + "[" + 
+                        ChatColor.GREEN  + "C" +
+                        ChatColor.YELLOW + "]" + 
+                        ChatColor.WHITE  + " " + sender.getName() + " : ";
+                
+                for (int i = 0 ; i < args.length ; i++)
                 {
-                    sender.sendMessage(ChatColor.RED + "ผู้เล่น [ " + args[0] + " ] ไม่อยู่ในเกม");
+                    msg += args[i] + " ";
                 }
-                else if (target.hasPermission("DTcmd.aitiFakeOP"))
+                
+                for(Player p:Bukkit.getServer().getOnlinePlayers())
                 {
-                    sender.sendMessage(ChatColor.RED + "คุณไม่สามารถควบคุม [ " + args[0] + " ] ได้");
-                }
-                else
-                {
-                    sender.sendMessage(ChatColor.GREEN + "ส่งเรียบร้อย");
-                    target.sendMessage(ChatColor.YELLOW + "You are now op!");
+                    if (p.hasPermission("DTcmd.adminChat"))
+                    {
+                        p.sendMessage(msg);
+                    }
                 }
             }
             else

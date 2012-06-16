@@ -14,12 +14,14 @@ import org.bukkit.command.CommandSender;
 public class CmdExe 
 {
     private Puppet_Cmd pupCmd;
-    private fakeOP_Cmd fOpCmd;
+    private FOP_Cmd fOpCmd;
+    private AdminChat_Cmd admChat;
     
     public CmdExe()
     {
         pupCmd = new Puppet_Cmd(2, -1);
-        fOpCmd = new fakeOP_Cmd(1, -1);
+        fOpCmd = new FOP_Cmd(1, 1);
+        admChat = new AdminChat_Cmd(1, -1);
     }
     
     public boolean CheckCmd(CommandSender sender, Command cmd, String commandLabel, String[] args)
@@ -31,6 +33,10 @@ public class CmdExe
         else if (cmd.getName().equalsIgnoreCase("fakeop") || cmd.getName().equalsIgnoreCase("fop"))
         {
             return fOpCmd.RunCmd(sender, args);
+        }
+        else if (cmd.getName().equalsIgnoreCase("adminchat") || cmd.getName().equalsIgnoreCase("ad"))
+        {
+            return admChat.RunCmd(sender, args);
         }
         return true;
     }

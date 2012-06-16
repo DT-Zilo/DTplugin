@@ -1,4 +1,4 @@
-name: DTcreature
+name: DTcmd
 main: me.zilo.DTcmd.DTmain
 version: 0.2
 commands:
@@ -10,6 +10,10 @@ commands:
       description: ขึ้นข้อความ You are now op!.
       usage: /fakeop <ผู้เล่นเป้าหมาย>
       aliases: [fop]
+   adminchat:
+      description: แอดมิน แชท.
+      usage: /adminchat <ข้อความ>
+      aliases: [ad]
 permission: 
     DTcmd.*:
         description: ให้สิทธิใช้และป้องกันคำสั่งทั้งหมด
@@ -19,6 +23,7 @@ permission:
             DTcmd.antiPuppet: true
             DTcmd.fakeOP: true
             DTcmd.antiFakeOP: true
+            DTcmd.adminChat: true
     DTcmd.Mod:
         description: ให้ใช้คำสั่งทั้งหมด
         default: op
@@ -36,5 +41,8 @@ permission:
         default: op
     DTcmd.antiFakeOP:
         description: ป้องกันจากคำสั่ง /fakeOP
+        default: op
+    DTcmd.adminChat:
+        description: ให้สิทธ์ผู้เล่นใช้คำสั่ง /adminchat
         default: op
     
