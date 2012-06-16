@@ -1,6 +1,6 @@
 name: DTcmd
 main: me.zilo.DTcmd.DTmain
-version: 0.2
+version: 0.3
 commands:
    puppet:
       description: ใช่ผู้เล่นอื่นพูดแทน.
