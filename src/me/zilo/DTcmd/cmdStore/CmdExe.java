@@ -7,10 +7,6 @@ package me.zilo.DTcmd.cmdStore;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-/**
- *
- * @author Zilo
- */
 public class CmdExe 
 {
     private Puppet_Cmd pupCmd;
