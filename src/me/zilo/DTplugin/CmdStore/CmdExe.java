@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package me.zilo.DTcmd.cmdStore;
+package me.zilo.DTplugin.CmdStore;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

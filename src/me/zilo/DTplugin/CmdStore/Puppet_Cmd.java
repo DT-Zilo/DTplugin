@@ -1,4 +1,4 @@
-package me.zilo.DTcmd.cmdStore;
+package me.zilo.DTplugin.CmdStore;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
