@@ -33,7 +33,7 @@ public class Puppet_Cmd
         }
         else
         {
-            if(sender.hasPermission("DTcmd.puppet")) 
+            if(sender.hasPermission("DTplugin.puppet")) 
             {
                 Player target = Bukkit.getServer().getPlayer(args[0]);
                 
@@ -41,7 +41,7 @@ public class Puppet_Cmd
                 {
                     sender.sendMessage(ChatColor.RED + "ผู้เล่น [ " + args[0] + " ] ไม่อยู่ในเกม");
                 }
-                else if (target.hasPermission("DTcmd.aitiPuppet"))
+                else if (target.hasPermission("DTplugin.aitiPuppet"))
                 {
                     sender.sendMessage(ChatColor.RED + "คุณไม่สามารถควบคุม [ " + args[0] + " ] ได้");
                 }
