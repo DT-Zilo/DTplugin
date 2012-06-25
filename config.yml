@@ -1,4 +1,4 @@
-nodrop-onDeath:
+nodrop-ondeath:
   - 302
   - 303
   - 304
@@ -18,7 +18,7 @@ disable-drop:
   - 4049
   - 4050
   - 18586
-disable-pick:
+disable-pickup:
   - 302
   - 303
   - 304
