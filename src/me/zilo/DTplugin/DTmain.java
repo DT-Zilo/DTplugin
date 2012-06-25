@@ -2,8 +2,7 @@ package me.zilo.DTplugin;
 
 import me.zilo.DTplugin.CmdStore.CmdExe;
 import java.util.logging.Logger;
-import me.zilo.DTplugin.Listener.PlayerDeathMSG;
-import me.zilo.DTplugin.Listener.PlayerDropControl;
+import me.zilo.DTplugin.Listener.*;
 import me.zilo.DTplugin.Utility.DeathData;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -27,12 +26,14 @@ public class DTmain extends JavaPlugin
     }
     
     @Override
-    public void onDisable() {
+    public void onDisable() 
+    {
         for (DeathData dd : PlayerDropControl.dds.values())
         {
             dd.dropItem();
         }
         PlayerDropControl.dds.clear();
+        AdminChatChannel.playerName.clear();
     }
     
     private void initialEvent()
@@ -41,6 +42,7 @@ public class DTmain extends JavaPlugin
         
         pm.registerEvents(new PlayerDeathMSG(), this);
         pm.registerEvents(new PlayerDropControl(), this);
+        pm.registerEvents(new AdminChatChannel(), this);
     }
     
     private void initialConfig()
