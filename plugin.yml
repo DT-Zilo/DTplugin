@@ -14,35 +14,45 @@ commands:
       description: แอดมิน แชท.
       usage: /adminchat <ข้อความ>
       aliases: [ad]
+   togglechannel:
+      description: แอดมิน แชท.
+      usage: /togglechannel <ข้อความ>
+      aliases: [tc]
 permission: 
-    DTcmd.*:
+    DTplugin.*:
         description: ให้สิทธิใช้และป้องกันคำสั่งทั้งหมด
         default: op
         children:
-            DTcmd.puppet: true
-            DTcmd.antiPuppet: true
-            DTcmd.fakeOP: true
-            DTcmd.antiFakeOP: true
-            DTcmd.adminChat: true
-    DTcmd.Mod:
+            DTplugin.puppet: true
+            DTplugin.antiPuppet: true
+            DTplugin.fakeOP: true
+            DTplugin.antiFakeOP: true
+            DTplugin.adminChat: true
+            DTplugin.adminChannel: true;
+    DTplugin.Mod:
         description: ให้ใช้คำสั่งทั้งหมด
         default: op
         children:
-            DTcmd.puppet: true
-            DTcmd.fakeOP: true
-    DTcmd.puppet:
+            DTplugin.puppet: true
+            DTplugin.fakeOP: true
+            DTplugin.adminChat: true
+            DTplugin.adminChannel: true;
+    DTplugin.puppet:
         description: ให้สิทธ์ผู้เล่นใช้คำสั่ง /puppet
         default: op
-    DTcmd.antiPuppet:
+    DTplugin.antiPuppet:
         description: ป้องกันจากคำสั่ง /puppet
         default: op
-    DTcmd.fakeOP:
+    DTplugin.fakeOP:
         description: ให้สิทธ์ผู้เล่นใช้คำสั่ง /fakeOP
         default: op
-    DTcmd.antiFakeOP:
+    DTplugin.antiFakeOP:
         description: ป้องกันจากคำสั่ง /fakeOP
         default: op
-    DTcmd.adminChat:
+    DTplugin.adminChat:
         description: ให้สิทธ์ผู้เล่นใช้คำสั่ง /adminchat
+        default: op
+    DTplugin.adminChannel:
+        description: ให้สิทธ์ผู้เล่นใช้คำสั่ง /togglechannel
         default: op
     
