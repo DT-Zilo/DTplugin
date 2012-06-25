@@ -75,7 +75,7 @@ public class PlayerDropControl implements Listener
     
     private boolean checkDrop(int itemID)
     {
-        List<Integer> keepDropList = DTmain.config.getIntegerList("nodrop");
+        List<Integer> keepDropList = DTmain.config.getIntegerList("nodrop-ondeath");
         
         for (Integer i:keepDropList)
         {
