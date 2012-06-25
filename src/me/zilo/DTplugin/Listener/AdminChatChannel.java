@@ -17,7 +17,7 @@ import org.bukkit.event.player.PlayerChatEvent;
 public class AdminChatChannel implements Listener
 {
     public static List<String> playerName = new ArrayList<String>();
-    String msg = ChatColor.YELLOW + "["         + 
+    String prefix = ChatColor.YELLOW + "["         + 
                  ChatColor.GREEN  + "Admin Ch"  +
                  ChatColor.YELLOW + "] "        +
                  ChatColor.WHITE;
@@ -31,13 +31,13 @@ public class AdminChatChannel implements Listener
         {
             event.setCancelled(true);
             
-            msg = msg + pName  + " : " + event.getMessage();
+            String send = prefix + pName  + " : " + event.getMessage();
             
             for(Player p:Bukkit.getServer().getOnlinePlayers())
             {
                 if (p.hasPermission("DTplugin.adminChannel"))
                 {
-                    p.sendMessage(msg);
+                    p.sendMessage(send);
                 }
             }
         }
