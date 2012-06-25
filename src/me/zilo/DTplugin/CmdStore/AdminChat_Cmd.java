@@ -41,7 +41,7 @@ public class AdminChat_Cmd
         }
         else
         {
-            if(sender.hasPermission("DTcmd.adminChat")) 
+            if(sender.hasPermission("DTplugin.adminChat")) 
             {
                 String msg = 
                         ChatColor.YELLOW + "[" + 
@@ -56,7 +56,7 @@ public class AdminChat_Cmd
                 
                 for(Player p:Bukkit.getServer().getOnlinePlayers())
                 {
-                    if (p.hasPermission("DTcmd.adminChat"))
+                    if (p.hasPermission("DTplugin.adminChat"))
                     {
                         p.sendMessage(msg);
                     }
