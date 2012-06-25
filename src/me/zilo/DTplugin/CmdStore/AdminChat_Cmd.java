@@ -18,11 +18,18 @@ public class AdminChat_Cmd
     private int minLenght;
     private int maxLenght;
     
+    private String prefix;
+    
     public AdminChat_Cmd(int minLen, int maxLen)
     {
         minLenght = minLen;
         
         maxLenght = (maxLen == -1) ? Integer.MAX_VALUE : maxLen;
+        
+        prefix = ChatColor.YELLOW + "[" + 
+                 ChatColor.GREEN  + "Admin Chat" +
+                 ChatColor.YELLOW + "]" + 
+                 ChatColor.WHITE  + " ";
     }
     
     public Boolean RunCmd(CommandSender sender, String[] args)
@@ -43,11 +50,7 @@ public class AdminChat_Cmd
         {
             if(sender.hasPermission("DTplugin.adminChat")) 
             {
-                String msg = 
-                        ChatColor.YELLOW + "[" + 
-                        ChatColor.GREEN  + "C" +
-                        ChatColor.YELLOW + "]" + 
-                        ChatColor.WHITE  + " " + sender.getName() + " : ";
+                String msg = prefix + sender.getName() + " : ";
                 
                 for (int i = 0 ; i < args.length ; i++)
                 {
