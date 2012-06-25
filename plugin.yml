@@ -1,6 +1,6 @@
 name: DTplugin
 main: me.zilo.DTplugin.DTmain
-version: 0.3
+version: 0.4
 commands:
    puppet:
       description: ใช่ผู้เล่นอื่นพูดแทน.
