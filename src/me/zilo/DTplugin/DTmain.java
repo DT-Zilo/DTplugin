@@ -21,28 +21,19 @@ public class DTmain extends JavaPlugin
     {
         cmdExe = new CmdExe();
         log = getLogger();
-        initialEvent();
         initialConfig();
+        initialEvent();
     }
     
     @Override
     public void onDisable() 
     {
-        for (DeathData dd : PlayerDropControl.dds.values())
+        for (DeathData dd : PlayerDeathDropControl.dds.values())
         {
             dd.dropItem();
         }
-        PlayerDropControl.dds.clear();
+        PlayerDeathDropControl.dds.clear();
         AdminChatChannel.playerName.clear();
-    }
-    
-    private void initialEvent()
-    {
-        PluginManager pm = getServer().getPluginManager();
-        
-        pm.registerEvents(new PlayerDeathMSG(), this);
-        pm.registerEvents(new PlayerDropControl(), this);
-        pm.registerEvents(new AdminChatChannel(), this);
     }
     
     private void initialConfig()
@@ -50,6 +41,15 @@ public class DTmain extends JavaPlugin
         config = getConfig();
         config.options().copyDefaults(true);
         saveConfig();
+    }
+    
+    private void initialEvent()
+    {
+        PluginManager pm = getServer().getPluginManager();
+        
+        pm.registerEvents(new PlayerDeathMSG(), this);
+        pm.registerEvents(new PlayerDeathDropControl(), this);
+        pm.registerEvents(new AdminChatChannel(), this);
     }
     
     @Override
