@@ -4,7 +4,6 @@
  */
 package me.zilo.DTplugin.CmdStore;
 
-import com.google.common.util.concurrent.FakeTimeLimiter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -42,7 +41,7 @@ public class FOP_Cmd
         }
         else
         {
-            if(sender.hasPermission("DTcmd.fakeOP")) 
+            if(sender.hasPermission("DTplugin.fakeOP")) 
             {
                 Player target = Bukkit.getServer().getPlayer(args[0]);
 
@@ -50,7 +49,7 @@ public class FOP_Cmd
                 {
                     sender.sendMessage(ChatColor.RED + "ผู้เล่น [ " + args[0] + " ] ไม่อยู่ในเกม");
                 }
-                else if (target.hasPermission("DTcmd.aitiFakeOP"))
+                else if (target.hasPermission("DTplugin.aitiFakeOP"))
                 {
                     sender.sendMessage(ChatColor.RED + "คุณไม่สามารถควบคุม [ " + args[0] + " ] ได้");
                 }
