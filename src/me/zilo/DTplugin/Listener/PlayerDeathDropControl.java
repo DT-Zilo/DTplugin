@@ -14,7 +14,8 @@ import org.bukkit.inventory.ItemStack;
 public class PlayerDeathDropControl implements Listener
 {
     public static Map<Player, DeathData> dds = new HashMap<Player, DeathData>();
-        
+    List<Integer> keepDropList = DTmain.config.getIntegerList("nodrop-ondeath");
+    
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerDeath(PlayerDeathEvent event)
     {
@@ -75,8 +76,6 @@ public class PlayerDeathDropControl implements Listener
     
     private boolean checkDeathDrop(int itemID)
     {
-        List<Integer> keepDropList = DTmain.config.getIntegerList("nodrop-ondeath");
-        
         for (Integer i:keepDropList)
         {
             if (i == itemID)
