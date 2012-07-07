@@ -1,9 +1,11 @@
 package me.zilo.DTplugin;
 
+import me.zilo.DTplugin.Listener.AdminChatChannel;
 import me.zilo.DTplugin.CmdStore.CmdExe;
 import java.util.logging.Logger;
 import me.zilo.DTplugin.Listener.*;
 import me.zilo.DTplugin.Utility.DeathData;
+import me.zilo.DTplugin.Utility.SettingManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -41,6 +43,7 @@ public class DTmain extends JavaPlugin
         config = getConfig();
         config.options().copyDefaults(true);
         saveConfig();
+        SettingManager.LoadConfig();
     }
     
     private void initialEvent()
@@ -50,6 +53,10 @@ public class DTmain extends JavaPlugin
         pm.registerEvents(new PlayerDeathMSG(), this);
         pm.registerEvents(new PlayerDeathDropControl(), this);
         pm.registerEvents(new AdminChatChannel(), this);
+        pm.registerEvents(new PlayerDropControl(), this);
+        pm.registerEvents(new PlayerPickupControl(), this);
+        pm.registerEvents(new ClearBlockDrop(), this);
+        //pm.registerEvents(new PlayerInteractControl(), this);
     }
     
     @Override
