@@ -1,32 +1,26 @@
 package me.zilo.DTplugin.Listener;
 
 import java.util.*;
-import me.zilo.DTplugin.DTmain;
 import me.zilo.DTplugin.Utility.DeathData;
+import me.zilo.DTplugin.Utility.SettingManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class PlayerDeathDropControl implements Listener
 {
-    public static Map<Player, DeathData> dds = new HashMap<Player, DeathData>();
-    List<Integer> keepDropList = DTmain.config.getIntegerList("nodrop-ondeath");
+    public static Map<String, DeathData> dds = new HashMap<String, DeathData>();
+    List<Integer> keepDropList = SettingManager.keepDropList;
     
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.LOW)
     public void onPlayerDeath(PlayerDeathEvent event)
     {
         Player player = event.getEntity();
-        
-        DeathData dd = dds.get(player);
-        
-        if (dd != null)
-        {
-            dd.dropItem();
-        }
         
         ItemStack[] dropItem = player.getInventory().getContents();
         ItemStack[] armorItem = player.getInventory().getArmorContents();
@@ -59,29 +53,40 @@ public class PlayerDeathDropControl implements Listener
             }
         }
         
-        dds.put(event.getEntity(),new DeathData(player.getLocation(), dropItem, armorItem));
+        dds.put(player.getName(),new DeathData(player, player.getLocation(), dropItem, armorItem));
     }
     
-    @EventHandler(priority = EventPriority.HIGH)
-    public void onPlayerRespawn(final PlayerRespawnEvent event) 
+    @EventHandler(priority = EventPriority.LOW)
+    public void onPlayerRespawn(PlayerRespawnEvent event) 
     {
         Player player = event.getPlayer();
         
-        DeathData dd = dds.remove(player);
+        DeathData dd = dds.remove(player.getName());
+        
         if (dd != null)
         {
-            dd.giveKeepItemToPlayer(player);
+            dd.giveKeepItemToPlayer();
+        }
+    }
+    
+    @EventHandler(priority = EventPriority.LOW)
+    public void onPlayerJoin(PlayerJoinEvent event)
+    {
+        Player player = event.getPlayer();
+        
+        if (dds.containsKey(player.getName()))
+        {
+            DeathData tdd = dds.remove(player.getName());
+            tdd.setPlayer(player);
+            dds.put(player.getName(), tdd);
         }
     }
     
     private boolean checkDeathDrop(int itemID)
     {
-        for (Integer i:keepDropList)
+        if (keepDropList.contains(itemID))
         {
-            if (i == itemID)
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }
