@@ -7,15 +7,17 @@ import org.bukkit.inventory.ItemStack;
 
 public class DeathData 
 {
-    private final ItemStack[] itemInv;
-    private final ItemStack[] armInv;
-    private final Location location;
+    private ItemStack[] itemInv;
+    private ItemStack[] armInv;
+    private Location location;
+    private Player thisPlayer;
     
-    public DeathData(Location loc, ItemStack[] item, ItemStack[] arm)
+    public DeathData(Player player, Location loc, ItemStack[] item, ItemStack[] arm)
     {
         location = loc;
         itemInv = item;
         armInv = arm;
+        thisPlayer = player;
     }
     
     public void dropItem()
@@ -37,9 +39,39 @@ public class DeathData
         }
     }
     
-    public void giveKeepItemToPlayer(final Player player)
+    public void giveKeepItemToPlayer()
     {
-        player.getInventory().setContents(itemInv);
-        player.getInventory().setArmorContents(armInv);
+        thisPlayer.getInventory().setContents(itemInv);
+        thisPlayer.getInventory().setArmorContents(armInv);
+    }
+    
+    public String getPlayerName()
+    {
+        return thisPlayer.getName();
+    }
+    
+    public void setPlayer(Player p)
+    {
+        thisPlayer = p;
+    }
+    
+    public Player getPlayer()
+    {
+        return thisPlayer;
+    }
+    
+    public Location getLocation()
+    {
+        return location;
+    }
+    
+    public ItemStack[] getItemInv()
+    {
+        return itemInv;
+    }
+    
+    public ItemStack[] getArmInv()
+    {
+        return armInv;
     }
 }
