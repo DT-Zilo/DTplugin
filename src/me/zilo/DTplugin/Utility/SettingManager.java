@@ -5,7 +5,7 @@
 package me.zilo.DTplugin.Utility;
 
 import java.util.List;
-import me.zilo.DTplugin.DTmain;
+import org.bukkit.configuration.file.FileConfiguration;
 
 /**
  *
@@ -19,12 +19,12 @@ public class SettingManager
     public static List<Integer> disableInteractList;
     public static List<Integer> disablePickupList;
     
-    public static void LoadConfig()
+    public static void LoadConfig(FileConfiguration config)
     {
-        clearDropList = DTmain.config.getIntegerList("cleardrop-onbreak");
-        keepDropList = DTmain.config.getIntegerList("nodrop-ondeath");
-        disableDropList = DTmain.config.getIntegerList("disable-drop");
-        disableInteractList = DTmain.config.getIntegerList("disable-interact");
-        disablePickupList = DTmain.config.getIntegerList("disable-pickup");
+        clearDropList = config.getIntegerList("cleardrop-onbreak");
+        keepDropList = config.getIntegerList("nodrop-ondeath");
+        disableDropList = config.getIntegerList("disable-drop");
+        disableInteractList = config.getIntegerList("disable-interact");
+        disablePickupList = config.getIntegerList("disable-pickup");
     }
 }
