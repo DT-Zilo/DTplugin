@@ -1,89 +1,45 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package me.zilo.DTplugin.Listener;
 
-import java.util.*;
-import me.zilo.DTplugin.DTmain;
-import me.zilo.DTplugin.Utility.DeathData;
+import java.util.List;
+import me.zilo.DTplugin.Utility.SettingManager;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ *
+ * @author Zilo
+ */
 public class PlayerDropControl implements Listener
 {
-    public static Map<Player, DeathData> dds = new HashMap<Player, DeathData>();
-        
-    @EventHandler(priority = EventPriority.HIGH)
-    public void onPlayerDeath(PlayerDeathEvent event)
-    {
-        Player player = event.getEntity();
-        
-        DeathData dd = dds.get(player);
-        
-        if (dd != null)
-        {
-            dd.dropItem();
-        }
-        
-        ItemStack[] dropItem = player.getInventory().getContents();
-        ItemStack[] armorItem = player.getInventory().getArmorContents();
-        
-        for (int i = 0; i < armorItem.length; i++) 
-        {
-            ItemStack item = armorItem[i];
-            
-            if (item != null && checkDrop(item.getTypeId()))
-            {
-                event.getDrops().remove(item);
-            }
-            else
-            {
-                armorItem[i] = null;
-            }
-        }
-        
-        for (int i = 0; i < dropItem.length; i++)
-        {
-            ItemStack item = dropItem[i];
-            
-            if (item != null && checkDrop(item.getTypeId()))
-            {
-                event.getDrops().remove(item);
-            }
-            else
-            {
-                dropItem[i] = null;
-            }
-        }
-        
-        dds.put(event.getEntity(),new DeathData(player.getLocation(), dropItem, armorItem));
-    }
+    List<Integer> disableDropList = SettingManager.disableDropList;
     
-    @EventHandler(priority = EventPriority.HIGH)
-    public void onPlayerRespawn(final PlayerRespawnEvent event) 
+    String msg = ChatColor.YELLOW + "["    +
+                 ChatColor.GREEN  + "Disable Drop" +
+                 ChatColor.YELLOW + "] " +
+                 ChatColor.RED  + " คุณไม่สามารถทิ้งไอเทมนี้ได้";
+    
+    @EventHandler(priority = EventPriority.LOW)
+    public void onPlayerDrop(PlayerDropItemEvent event)
     {
+        ItemStack item = event.getItemDrop().getItemStack();
         Player player = event.getPlayer();
         
-        DeathData dd = dds.remove(player);
-        if (dd != null)
+        if (!player.hasPermission("DTplugin.bypassDrop"))
         {
-            dd.giveKeepItemToPlayer(player);
-        }
-    }
-    
-    private boolean checkDrop(int itemID)
-    {
-        List<Integer> keepDropList = DTmain.config.getIntegerList("nodrop-ondeath");
-        
-        for (Integer i:keepDropList)
-        {
-            if (i == itemID)
+            if (disableDropList.contains(item.getTypeId()))
             {
-                return true;
+                player.sendMessage(msg);
+                event.setCancelled(true);
             }
         }
-        return false;
     }
 }
