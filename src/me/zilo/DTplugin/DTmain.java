@@ -14,7 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class DTmain extends JavaPlugin
 {
     private CmdExe cmdExe;
-    public static FileConfiguration config;
+    public FileConfiguration config;
     
     @Override
     public void onEnable()
@@ -40,7 +40,7 @@ public class DTmain extends JavaPlugin
         config = getConfig();
         config.options().copyDefaults(true);
         saveConfig();
-        SettingManager.LoadConfig();
+        SettingManager.LoadConfig(config);
     }
     
     private void initialEvent()
