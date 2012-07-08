@@ -2,7 +2,6 @@ package me.zilo.DTplugin;
 
 import me.zilo.DTplugin.Listener.AdminChatChannel;
 import me.zilo.DTplugin.CmdStore.CmdExe;
-import java.util.logging.Logger;
 import me.zilo.DTplugin.Listener.*;
 import me.zilo.DTplugin.Utility.DeathData;
 import me.zilo.DTplugin.Utility.SettingManager;
