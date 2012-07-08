@@ -15,14 +15,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class DTmain extends JavaPlugin
 {
     private CmdExe cmdExe;
-    public static Logger log;
     public static FileConfiguration config;
     
     @Override
     public void onEnable()
     {
         cmdExe = new CmdExe();
-        log = getLogger();
         initialConfig();
         initialEvent();
     }
