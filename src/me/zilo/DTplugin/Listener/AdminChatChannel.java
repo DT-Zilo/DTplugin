@@ -22,7 +22,7 @@ public class AdminChatChannel implements Listener
                  ChatColor.YELLOW + "] "        +
                  ChatColor.WHITE;
     
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.LOW)
     public void onPlayerChat(PlayerChatEvent event) 
     {
         String pName = event.getPlayer().getName();
